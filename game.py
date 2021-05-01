@@ -1,5 +1,7 @@
 class Game():
-    players = []
+    #2-tuple to store each players name
+    #defaut player 1 and player 23
+    players = (1,2)
     moves = []
     current_player = 0
     gameState = None
@@ -24,6 +26,7 @@ class Game():
             else:
                 print('PLAYER ' + str(self.players[self.current_player]) + ' WINS!')
                 endgame = True
+        self.printGame()
 
     def nextTurn(self):
         self.current_player = (self.current_player + 1) % len(self.players)
@@ -35,6 +38,9 @@ class Game():
         pass
 
     def move(self, keyPress):
+        pass
+
+    def undoMove(self, keyPress):
         pass
 
     def inputMove(self):
@@ -49,13 +55,9 @@ class Game():
         return inputKey
 
 class TicTacToe(Game):
-    players = ['X','O']
+    players = ('X','O')
     moves = [1,2,3,4,5,6,7,8,9]
-    gameState = [
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
-            [' ', ' ', ' '],
-    ]
+    gameState = [[' ' for x in range(3)] for y in range(3)]
     draws_possible = True
 
     keybind = [
@@ -70,7 +72,6 @@ class TicTacToe(Game):
         # check rows
         for i in range(3):
             if (board[i][0] == board[i][1] == board[i][2] == player):
-                print("GOT HERE")
                 return player
         # check columns
         for i in range(3):
@@ -114,7 +115,7 @@ class TakeAway(Game):
     
     gameState = 21
     moves = [1,2,3]
-    players = [1,2]
+    players = [1,2,3]
 
     def winner(self):
         if self.gameState == 0:
@@ -135,7 +136,7 @@ class TakeAway(Game):
 
 
     def printGame(self):
-        print(str(self.gameState) + "remaining")
+        print(str(self.gameState) + " remaining")
 
 
 def main():
