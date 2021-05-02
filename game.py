@@ -136,7 +136,7 @@ class TicTacToe(Game):
 
 class TakeAway(Game):
     
-    game_state = 21
+    game_state = 200
     moves = [1,2,3]
     players = (1,2)
 
