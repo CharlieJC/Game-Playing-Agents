@@ -26,35 +26,6 @@ class MinimaxTTT(Minimax):
                     return True
         return False
 
-    # def evaluate(self):
-    #     board = self.game_state
-    #     #Check rows for a win
-    #     for row in range(3):
-    #         if (board[row][0] == board[row][1] == board[row][2] == self.player):
-    #             return 10
-    #         if (board[row][0] == board[row][1] == board[row][2] == self.opponent):
-    #             return -10
-
-    #     #Check columns for a win
-    #     for col in range(3):
-    #         if (board[0][col] == board[1][col] == board[2][col] == self.player):
-    #             return 10
-    #         if (board[0][col] == board[1][col] == board[2][col] == self.opponent):
-    #             return -10
-
-    #     #Check both diagonals for a win
-    #     if (board[0][0] == board[1][1] == board[2][2] == self.player):
-    #         return 10
-    #     if (board[0][0] == board[1][1] == board[2][2] == self.opponent):
-    #         return -10
-
-    #     if (board[0][2] == board[1][1] == board[2][0] == self.player):
-    #         return 10
-    #     if (board[0][2] == board[1][1] == board[2][0] == self.opponent):
-    #         return -10
-
-    #     #No win
-        # return 0
 
     # Eval(s) = 3X2(s) + X1(s) - (3O2(s) + O1(s))
 

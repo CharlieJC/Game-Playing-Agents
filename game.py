@@ -52,9 +52,6 @@ class Game():
     def move(self, keyPress):
         pass
 
-    def undoMove(self, keyPress):
-        pass
-
     def opponent(self, player):
         if self.players[0] == player:
             return self.players[1]
@@ -124,8 +121,7 @@ class TicTacToe(Game):
                         return True
                     else:
                         print(self.move_error_text)
-                        return False
-        
+                        return False     
 
     def printGame(self):
         for i in range(3):
@@ -136,7 +132,7 @@ class TicTacToe(Game):
 
 class TakeAway(Game):
     
-    game_state = 200
+    game_state = 21
     moves = [1,2,3]
     players = (1,2)
 
@@ -167,10 +163,69 @@ class TakeAway(Game):
     def printGame(self):
         print(str(self.game_state) + " remaining")
 
+class Connect4(Game):
+
+    players = ('R','G')
+    moves = [1,2,3,4,5,6,7]
+    game_state = [[' ' for y in range(7)] for x in range(6)]
+
+    def process_ai_move(self):
+        pass
+
+    def winner(self):
+        pass
+
+    def move(self, slot):
+        if int(slot) not in self.moves:
+            print(self.move_error_text)
+            return False
+        return self.dropCoin(slot)
+
+    def dropCoin(self,pos):
+        if pos in range(1,7):
+            for y in range(5,-1,-1):
+                if self.game_state[y][pos] == ' ':
+                    self.game_state[y][pos] = self.players[self.current_player]
+                    return True
+        #if full
+        return False
+
+    def removeCoin(self,pos):
+        if pos in range(1,7):
+            for y in range(0,6):
+                if self.game_state[y][pos] != ' ':
+                    self.game_state[y][pos] = ' '
+                    return True
+        #if full
+        return False
+
+    def printGame(self):
+        for x in range(6):
+            print('|', end='')
+            for y in range(7):
+                print(self.game_state[x][y], end='|')
+            print()
+
+        print('|0|1|2|3|4|5|6|')
 
 def main():
-    game = TakeAway((False,True))
-    game.play()
+    game = Connect4((False,True))
+    game.dropCoin(3)
+    game.dropCoin(3)
+
+    game.dropCoin(3)
+
+    game.dropCoin(3)
+    game.dropCoin(3)
+    game.removeCoin(3)
+    game.removeCoin(3)
+    game.dropCoin(4)
+    game.dropCoin(4)
+
+
+
+    game.printGame()
+    # game.play()
 
 
 if __name__ == "__main__":
